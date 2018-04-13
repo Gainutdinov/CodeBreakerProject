@@ -6,14 +6,13 @@ function guess() {
 
     //add functionality to guess function here
 
-    if ( answer.value==="" || attempt.value==="" ) {
+    if (answer.value === "" || attempt.value === "") {
         setHiddenFields();
     }
 
     if (!validateInput(input.value)) {
         return false;
-    }
-    else {
+    } else {
         attempt.value = Number(attempt.value) + 1;
     }
     setMessage("Incorrect, try again.");
@@ -22,8 +21,7 @@ function guess() {
         setMessage("You Win! :)");
         showAnswer(true);
         showReplay();
-    }
-    else if (attempt.value >= 10) {
+    } else if (attempt.value >= 10) {
         setMessage("You Lose! :(");
         showAnswer(false);
         showReplay();
@@ -39,12 +37,11 @@ function guess() {
 // sets the answer variable equal to a randomly generated whole number between 0 and 9999.
 function setHiddenFields() {
     attempt.value = 0;
-    let randomNum = Math.floor(Math.random() * (10000-0)) + 0;
+    let randomNum = Math.floor(Math.random() * (10000 - 0)) + 0;
     if (randomNum.toString().length < 4) {
         let delta = 4 - randomNum.toString().length;
-        answer.value = '0'.repeat(delta)+randomNum.toString();
-    }
-    else{
+        answer.value = '0'.repeat(delta) + randomNum.toString();
+    } else {
         answer.value = randomNum.toString();
     }
 
@@ -58,8 +55,7 @@ function setMessage(message) {
 function validateInput(arg) {
     if (arg.length == 4) {
         return true;
-    }
-    else {
+    } else {
         setMessage("Guesses must be exactly 4 characters long.");
         return false;
     }
@@ -73,8 +69,7 @@ function getResults(input) {
         if (answer.value[index] == num) {
             extralHTML += `<span class="glyphicon glyphicon-ok"></span>`;
             correctNums += 1;
-        } 
-        else if (answer.value.indexOf(num) > -1) {
+        } else if (answer.value.indexOf(num) > -1) {
             extralHTML += `<span class="glyphicon glyphicon-transfer"></span>`;
         } else {
             extralHTML += `<span class="glyphicon glyphicon-remove"></span>`;
@@ -84,8 +79,7 @@ function getResults(input) {
     document.getElementById('results').innerHTML += extralHTML;
     if (correctNums == answer.value.length) {
         return true;
-    }
-    else {
+    } else {
         return false;
     }
 }
