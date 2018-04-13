@@ -62,21 +62,22 @@ function validateInput(arg) {
 }
 
 function getResults(input) {
-    let extralHTML = `<div class="row"><span class="col-md-6"> ${input.value} </span><div class="col-md-6">`;
+    let extraHTML = `<div class="row"><span class="col-md-6"> ${input.value} </span><div class="col-md-6">`;
     let index = 0;
     let correctNums = 0;
     for (let num of input.value) {
         if (answer.value[index] == num) {
-            extralHTML += `<span class="glyphicon glyphicon-ok"></span>`;
+            extraHTML += `<span class="glyphicon glyphicon-ok"></span>`;
             correctNums += 1;
         } else if (answer.value.indexOf(num) > -1) {
-            extralHTML += `<span class="glyphicon glyphicon-transfer"></span>`;
+            extraHTML += `<span class="glyphicon glyphicon-transfer"></span>`;
         } else {
-            extralHTML += `<span class="glyphicon glyphicon-remove"></span>`;
+            extraHTML += `<span class="glyphicon glyphicon-remove"></span>`;
         }
-        index += 1;
+        index += 1; 
     }
-    document.getElementById('results').innerHTML += extralHTML;
+    extraHTML += `</div>`;
+    document.getElementById('results').innerHTML += extraHTML;
     if (correctNums == answer.value.length) {
         return true;
     } else {
