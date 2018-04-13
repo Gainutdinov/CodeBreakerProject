@@ -61,24 +61,23 @@ function validateInput(arg) {
     }
 }
 
-function getResults(input) {
-    let extraHTML = `<div class="row"><span class="col-md-6"> ${input.value} </span><div class="col-md-6">`;
-    let index = 0;
-    let correctNums = 0;
-    for (let num of input.value) {
-        if (answer.value[index] == num) {
-            extraHTML += `<span class="glyphicon glyphicon-ok"></span>`;
-            correctNums += 1;
-        } else if (answer.value.indexOf(num) > -1) {
-            extraHTML += `<span class="glyphicon glyphicon-transfer"></span>`;
+function getResults(input) {let correct = 0;
+    let html = '<div class="row"><span class="col-md-6">' + input.value + '</span><div class="col-md-6">';
+    for(i = 0; i < input.value.length; i++)
+    {
+        if(input.value.charAt(i) == answer.value.charAt(i))
+        {
+            html += '<span class="glyphicon glyphicon-ok"></span>';
+            correct++;
+        } else if (answer.value.indexOf(input.value.charAt(i)) > -1) {
+            html += '<span class="glyphicon glyphicon-transfer"></span>';
         } else {
-            extraHTML += `<span class="glyphicon glyphicon-remove"></span>`;
+            html += '<span class="glyphicon glyphicon-remove"></span>';
         }
-        index += 1; 
     }
-    extraHTML += `</div>`;
-    document.getElementById('results').innerHTML += extraHTML;
-    if (correctNums == answer.value.length) {
+    html += '</div></div>';
+    document.getElementById('results').innerHTML += html;
+    if(correct == input.value.length) {
         return true;
     } else {
         return false;
